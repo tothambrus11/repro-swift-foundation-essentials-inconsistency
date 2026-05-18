@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:repro}",
+      "name": "Debug repro",
+      "target": "repro",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug repro"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:repro}",
+      "name": "Release repro",
+      "target": "repro",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release repro"
+    }
+  ]
+}
