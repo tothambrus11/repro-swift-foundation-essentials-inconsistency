@@ -2,9 +2,9 @@ import Testing
 @testable import repro
 
 @Test func testFoundation() async throws {
-    foundation()
+    try foundation()
 }
 
 @Test func testEssentials() async throws {
-    essentials()
+    try essentials()
 }

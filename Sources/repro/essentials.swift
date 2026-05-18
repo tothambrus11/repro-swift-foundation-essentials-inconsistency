@@ -1,20 +1,28 @@
 import FoundationEssentials
 
-func essentials() {
+func essentials() throws {
 
   let m = FileManager.default
-  print("Current directory: \(URL(fileURLWithPath: FileManager.default.currentDirectoryPath, isDirectory: true))")
-  let u = try! m.url(
-    for: .itemReplacementDirectory,
-    in: .userDomainMask,
-    appropriateFor: .init(
-      fileURLWithPath: FileManager.default.currentDirectoryPath, isDirectory: true),
-    create: true)
+  print(
+    "Current directory: \(URL(fileURLWithPath: FileManager.default.currentDirectoryPath, isDirectory: true))"
+  )
 
-  try? String("hello world").write(
-    to: u.appendingPathComponent("a.txt"), atomically: true, encoding: .utf8)
+  do {
+    let u = try m.url(
+      for: .itemReplacementDirectory,
+      in: .userDomainMask,
+      appropriateFor: .init(
+        fileURLWithPath: FileManager.default.currentDirectoryPath, isDirectory: true),
+      create: true)
 
-  print((try? String(contentsOf: u.appendingPathComponent("a.txt"), encoding: .utf8)) ?? "nil")
+    try String("hello world").write(
+      to: u.appendingPathComponent("a.txt"), atomically: true, encoding: .utf8)
+
+    print(try String(contentsOf: u.appendingPathComponent("a.txt"), encoding: .utf8))
+  } catch {
+    print(error.localizedDescription)
+    throw error
+  }
 
   print("Done")
 }
